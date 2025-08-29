@@ -1,26 +1,62 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { Movie } from './entities/movie.entity';
 
 @Injectable()
 export class MoviesService {
-  create(createMovieDto: CreateMovieDto) {
-    return 'This action adds a new movie';
+  constructor (
+    @InjectModel(Movie)
+    private readonly movieModel: typeof Movie
+  ) {}
+
+    async createMovie(createMovieDto: CreateMovieDto) {
+        const createdMovie = await this.movieModel.create({...createMovieDto})
+
+          if(createdMovie) {
+            return { message: "Filme adicionado com sucesso!", status: HttpStatus.OK };
+          }
+    }
+
+    async findAll() {
+      return await this.movieModel.findAll();
   }
 
-  findAll() {
-    return `This action returns all movies`;
-  }
+    async findOne(id: string) {
+      const findMovie = await this.movieModel.findOne({
+        where: { movie_id: id },
+      });
 
-  findOne(id: number) {
-    return `This action returns a #${id} movie`;
-  }
+      if (!findMovie) {
+        console.log("Movie not found!");
+      } 
+        return findMovie;
+    }
 
-  update(id: number, updateMovieDto: UpdateMovieDto) {
-    return `This action updates a #${id} movie`;
-  }
+    async update(id: string, updateMovieDto: UpdateMovieDto) { 
+      const [numberOfAffectedRows,[updatedMovie]] = await this.movieModel.update(
+        { ...updateMovieDto },
+        { where: { movie_id: id}, returning: true },
+      );
+      
+      if (numberOfAffectedRows === 0) {
+        throw new NotFoundException("Movie not found!");
+      } else if (updatedMovie) {
+        return { message: "Atualizado com sucesso!", status: HttpStatus.OK }
+      }
+        return updatedMovie;
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} movie`;
-  }
+    async remove(id: string) {
+      const removedMovie = await this.movieModel.destroy({
+        where: { movie_id: id },
+      });
+
+      if (!removedMovie) {
+        throw new NotFoundException("Movie not found!")
+      } else {
+        return { message: "Removido com sucesso!", status: HttpStatus.OK }
+      }
+    };
 }

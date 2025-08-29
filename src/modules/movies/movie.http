@@ -1,0 +1,33 @@
+### INSERIR NOVOS FILMES (POST)
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+    "title": "Dragão Ball Z: A batalha do Deuses",
+    "duration": "2h 30min",
+    "genre": "Ação",
+    "sinopse": "Prepare-se para o retorno triunfal de Dragon Ball Z aos cinemas, numa aventura que redefine os limites do poder e do universo! Após décadas de sono, Bills (Beerus), o temível Deus da Destruição, desperta. Com um poder inimaginável, ele fica intrigado com a notícia de que Freeza foi derrotado por um mortal, o Saiyajin Goku.",
+    "parentalRating": "+16",
+    "releaseDate": "2023-05-20",
+    "poster": "https://imgs.search.brave.com/o-00WU4hNg7PjdaQS848sVtr5cJ5Oqgq1JhP4zjqzAQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ici53/ZWIuaW1nMy5hY3N0/YS5uZXQvY18zMDBf/MzAwL3BpY3R1cmVz/LzIxMC80NTYvMjEw/NDU2NTRfMjAxMzEw/MDExNTA0NTQ5MzMu/anBn",
+    "averageRating": 9.5,
+    "directors": ["Cleiton rasta","Edson Gomes"],
+    "cast": ["Vin dieson","Maria joaquina"]
+}
+
+### PEGAR TODOS OS FILMES (GET)
+GET http://localhost:3000/movies
+
+### PEGAR UM UNICO FILME (GET:ID)
+GET  http://localhost:3000/movies/
+
+### ATUALIZAR UM FILME (PATCH:ID)
+PATCH  http://localhost:3000/movies/c865ef98-7f81-4219-9686-cef3eaea779e
+Content-Type: application/json
+
+{
+    "title": "Dragão Ball Z: A batalha do Deuses 344432424242"
+}
+
+### REMOVER UM FILME (REMOVE:ID)
+DELETE http://localhost:3000/movies/c865ef98-7f81-4219-9686-cef3eaea779e

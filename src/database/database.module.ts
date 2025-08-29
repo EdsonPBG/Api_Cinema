@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from "@nestjs/sequelize";
 import * as dotenv from 'dotenv';
 import { Users } from 'src/modules/users/entities/users.entity';
+import { Movie } from '../modules/movies/entities/movie.entity';
 
 
 
@@ -16,9 +17,11 @@ dotenv.config();
             password: process.env.DB_PASS,
             database: process.env.DB_NAME,
             models: [
-                Users
+                Users,
+                Movie,
             ],
-            logging: false,
+            synchronize: true,
+            logging: true,
             autoLoadModels: true
         }),
     ],
