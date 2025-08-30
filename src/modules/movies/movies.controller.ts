@@ -5,7 +5,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { AuthDto } from '../auth/dto/auth.dto';
 import { MoviePaginationDto } from './dto/pagination-movie.dto';
 
-@UseGuards(AuthDto)
+// @UseGuards(AuthDto)
 @Controller('movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
