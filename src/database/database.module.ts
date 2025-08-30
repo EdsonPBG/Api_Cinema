@@ -9,7 +9,6 @@ import { Seat } from 'src/modules/seats/entities/seat.entity';
 import { Reservation } from 'src/modules/reservations/entities/reservation.entity';
 
 
-
 dotenv.config();
 @Module({
     imports: [

@@ -27,7 +27,7 @@ export class AuthService {
             }
 
             const payload = {
-                userId: user.user_id,
+                user_id: user.user_id,
                 email: user.email,
                 username: user.username
             };
@@ -36,7 +36,7 @@ export class AuthService {
 
             return {
                 token: token,
-                userId: user.user_id,
+                user_id: user.user_id,
                 expiresIn: this.jwtExpirationTimeInSeconds
             }
         }
