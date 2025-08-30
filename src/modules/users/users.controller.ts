@@ -4,6 +4,7 @@ import { CreateUsersDto } from './dto/create-users.dto';
 import { UserPaginationdDto } from './dto/pagination-users.dto';
 import { UpdateUserDto } from './dto/update-users.dto';
 import { AuthDto } from '../auth/dto/auth.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -19,7 +20,7 @@ export class UsersController {
         return await this.UserService.createUsers(users);
     }
 
-    @UseGuards(AuthDto)
+    @UseGuards(AuthGuard)
     @Get()
     async findAll(
         @Query() userPagination: UserPaginationdDto 
@@ -27,7 +28,7 @@ export class UsersController {
         return await this.UserService.findAll(userPagination);
     }
 
-    @UseGuards(AuthDto)
+    @UseGuards(AuthGuard)
     @Patch(':id')
     async updateUsers(
         @Param('id') id: string,
@@ -36,7 +37,7 @@ export class UsersController {
         return await this.UserService.updateUser(id, updateUser);
     }
 
-    @UseGuards(AuthDto)
+    @UseGuards(AuthGuard)
     @Delete(':id')
     async removeUsers(
         @Param('id') id: string

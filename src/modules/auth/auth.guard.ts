@@ -2,7 +2,6 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { JwtService } from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
 import { Request } from 'express';
-import { Observable } from 'rxjs';
 
 dotenv.config()
 @Injectable()
