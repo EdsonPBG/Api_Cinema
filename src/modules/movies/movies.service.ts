@@ -3,6 +3,7 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Movie } from './entities/movie.entity';
+import { MoviePaginationDto } from './dto/pagination-movie.dto';
 
 @Injectable()
 export class MoviesService {
@@ -19,8 +20,14 @@ export class MoviesService {
           }
     }
 
-    async findAll() {
-      return await this.movieModel.findAll();
+    async findAll(moviePaginationDto: MoviePaginationDto) {
+      const offset = moviePaginationDto.offset ?? 0;
+      const limit = moviePaginationDto.limit ?? 10;
+
+      return await this.movieModel.findAll({
+        offset: offset,
+        limit: limit,
+      });
   }
 
     async findOne(id: string) {

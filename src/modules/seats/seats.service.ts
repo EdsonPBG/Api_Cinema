@@ -3,6 +3,7 @@ import { CreateSeatDto } from './dto/create-seat.dto';
 import { UpdateSeatDto } from './dto/update-seat.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Seat } from './entities/seat.entity';
+import { SeatPaginationDto } from './dto/pagination-seat.dto';
 
 @Injectable()
 export class SeatsService {
@@ -22,8 +23,14 @@ export class SeatsService {
       return { message: "Assento adicionado com sucesso!", status: HttpStatus.OK };
   }
 
-  async findAll() {
-    return await this.seatModel.findAll();
+  async findAll(seatPaginationDto: SeatPaginationDto) {
+    const offset = seatPaginationDto.offset ?? 0;
+    const limit = seatPaginationDto.limit ?? 10;
+
+    return await this.seatModel.findAll({
+      offset: offset,
+      limit: limit,
+    });
   }
 
   async findOne(id: string) {

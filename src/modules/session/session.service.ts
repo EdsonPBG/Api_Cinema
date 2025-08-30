@@ -3,6 +3,7 @@ import { CreateMovieSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { MovieSession } from './entities/session.entity';
+import { SessionPaginationDto } from './dto/pagination.session.dto';
 
 @Injectable()
 export class SessionService {
@@ -21,13 +22,20 @@ export class SessionService {
     };
   }
 
-  async findAll() {
-    const allSession = await this.movieSessionModel.findAll()
-      if (allSession.length === 0) {
-        throw new NotFoundException("Não existe nenhuma sessão")
-      }
-        return allSession;
+async findAll(sessionPaginationDto: SessionPaginationDto) {
+  const limit = sessionPaginationDto.limit ?? 10;
+  const offset = sessionPaginationDto.offset ?? 0;
+
+  const { count, rows } = await this.movieSessionModel.findAndCountAll({
+    offset: offset,
+    limit: limit,
+  });
+
+  if (count === 0) {
+    throw new NotFoundException('Não existe nenhuma sessão.');
   }
+    return { total: count, sessions: rows };
+}
 
   async findOne(id: string) {
     const findSession = await this.movieSessionModel.findOne({

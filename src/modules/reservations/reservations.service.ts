@@ -6,6 +6,7 @@ import { Reservation } from './entities/reservation.entity';
 import { Seat } from '../seats/entities/seat.entity';
 import { Sequelize } from 'sequelize-typescript';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
+import { ReservaPaginationDto } from './dto/pagination-reserva.dto';
 
 @Injectable()
 export class ReservationsService {
@@ -60,8 +61,14 @@ export class ReservationsService {
     });
   }
 
-  async findAll() {
-    return await this.reservaModel.findAll();
+  async findAll(reservaPaginationDto: ReservaPaginationDto) {
+    const offset = reservaPaginationDto.offset ?? 0;
+    const limit = reservaPaginationDto.limit ?? 10;
+
+    return await this.reservaModel.findAll({
+      offset: offset,
+      limit: limit,
+    });
   }
 
   async findOne(id: string) {

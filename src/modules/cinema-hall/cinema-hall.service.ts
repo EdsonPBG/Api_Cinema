@@ -3,6 +3,7 @@ import { CreateCinemaHallDto } from './dto/create-cinema-hall.dto';
 import { UpdateCinemaHallDto } from './dto/update-cinema-hall.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { CinemaHall } from './entities/cinema-hall.entity';
+import { CinemaHallPaginationDto } from './dto/pagination-cinema-hall.dto';
 
 @Injectable()
 export class CinemaHallService {
@@ -19,13 +20,20 @@ export class CinemaHallService {
     }
   }
 
-  async findAll() {
-    const allCineHall = await this.cinemaHallModel.findAll()
-      if (allCineHall.length === 0) {
-        throw new NotFoundException("Não ha nenhuma sala!")
-      }
-        return allCineHall;
-    }
+ async findAll(cinemaHallPagination: CinemaHallPaginationDto) {
+   const limit = cinemaHallPagination.limit ?? 10;
+   const offset = cinemaHallPagination.offset ?? 0;
+ 
+   const { count, rows } = await this.cinemaHallModel.findAndCountAll({
+     offset: offset,
+     limit: limit,
+   });
+ 
+   if (count === 0) {
+     throw new NotFoundException('Não existe nenhuma sessão.');
+   }
+     return { total: count, sessions: rows };
+ }
 
   async findOne(id: string) {
     const findCinemaHall = await this.cinemaHallModel.findOne({

@@ -1,7 +1,7 @@
 import { Type } from "class-transformer";
-import { IsNumber,IsOptional, Min } from "class-validator";
+import { IsNumber, IsOptional, Min } from "class-validator";
 
-export class UserPaginationdDto {
+export class SessionPaginationDto {
     @IsOptional()
     @Type(() => Number)
     @IsNumber()

@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { SessionService } from './session.service';
 import { CreateMovieSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
+import { SessionPaginationDto } from './dto/pagination.session.dto';
 
 @Controller('session')
 export class SessionController {
@@ -16,8 +17,8 @@ export class SessionController {
   }
 
   @Get()
-    findAll() {
-      return this.sessionService.findAll();
+    findAll(@Query() sessionPaginationDto: SessionPaginationDto) {
+      return this.sessionService.findAll(sessionPaginationDto);
   }
 
   @Get(':id')

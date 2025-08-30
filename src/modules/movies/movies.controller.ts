@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { AuthDto } from '../auth/dto/auth.dto';
+import { MoviePaginationDto } from './dto/pagination-movie.dto';
 
 @UseGuards(AuthDto)
 @Controller('movies')
@@ -19,8 +20,8 @@ export class MoviesController {
     }
 
   @Get()
-    findAll() {
-       return this.moviesService.findAll();
+    findAll(@Query() moviePaginationDto: MoviePaginationDto) {
+       return this.moviesService.findAll(moviePaginationDto);
     }
 
   @Get(':id')
