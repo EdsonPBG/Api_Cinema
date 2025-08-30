@@ -1,0 +1,26 @@
+### INSERIR NOVAS SESSÕES (POST)
+POST http://localhost:3000/session
+Content-Type: application/json
+
+{
+    "start_time": "2025-08-30T14:30:00.000Z",
+    "movie_id": "c319e2f1-3369-4a3c-b6c5-1efad4080e30",
+    "cinemaHall_id": "6b14ceed-2436-4c35-9228-7be917d33ddb"
+}
+
+### PEGAR TODOS AS SESSÕES (GET)
+GET http://localhost:3000/session
+
+### PEGAR UMA UNICA SESSÃO (GET:ID)
+GET  http://localhost:3000/session/
+
+### ATUALIZAR UMA SESSÃO (PATCH:ID)
+PATCH  http://localhost:3000/session/
+Content-Type: application/json
+
+{
+    "start_time": "2025-08-30T19:40:00.000Z"
+}
+
+### REMOVER UMA SESSÃO (REMOVE:ID)
+DELETE http://localhost:3000/session/

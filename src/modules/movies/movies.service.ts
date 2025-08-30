@@ -42,9 +42,7 @@ export class MoviesService {
       
       if (numberOfAffectedRows === 0) {
         throw new NotFoundException("Movie not found!");
-      } else if (updatedMovie) {
-        return { message: "Atualizado com sucesso!", status: HttpStatus.OK }
-      }
+      } 
         return updatedMovie;
     }
 
@@ -55,8 +53,7 @@ export class MoviesService {
 
       if (!removedMovie) {
         throw new NotFoundException("Movie not found!")
-      } else {
+      } 
         return { message: "Removido com sucesso!", status: HttpStatus.OK }
-      }
     };
 }

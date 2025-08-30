@@ -8,7 +8,7 @@ import { CreateMovieDto } from "../dto/create-movie.dto";
 export class Movie extends Model<Movie, CreateMovieDto> {
    @PrimaryKey
     @Default(DataType.UUIDV4)
-    @Column(DataType.UUID)
+    @Column(DataType.UUID) 
     public movie_id!: string;
 
     @Column({

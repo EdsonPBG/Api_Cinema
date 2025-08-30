@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "title": "Dragão Ball Z: A batalha do Deuses",
-    "duration": "2h 30min",
+    "duration": "2h 30min", 
     "genre": "Ação",
     "sinopse": "Prepare-se para o retorno triunfal de Dragon Ball Z aos cinemas, numa aventura que redefine os limites do poder e do universo! Após décadas de sono, Bills (Beerus), o temível Deus da Destruição, desperta. Com um poder inimaginável, ele fica intrigado com a notícia de que Freeza foi derrotado por um mortal, o Saiyajin Goku.",
     "parentalRating": "+16",

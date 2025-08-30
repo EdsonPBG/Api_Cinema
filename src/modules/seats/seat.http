@@ -1,0 +1,26 @@
+### INSERIR NOVOS ASSENTOS (POST)
+POST http://localhost:3000/seats
+Content-Type: application/json
+
+{
+    "seat_number": "B12",
+    "status": "Agendado",
+    "session_id": "8cc2c423-0eea-47ac-aad5-65c05396b0a9"
+}
+
+### PEGAR TODOS AS SESSÕES (GET)
+GET http://localhost:3000/seats
+
+### PEGAR UMA UNICA SESSÃO (GET:ID)
+GET  http://localhost:3000/session/
+
+### ATUALIZAR UMA SESSÃO (PATCH:ID)
+PATCH  http://localhost:3000/seats/0072c105-0943-4fd7-87d9-6391477a3d09
+Content-Type: application/json
+
+{
+    "seat_number": "B2"
+}
+
+### REMOVER UMA SESSÃO (REMOVE:ID)
+DELETE http://localhost:3000/session/

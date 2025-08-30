@@ -1,0 +1,19 @@
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "Edson2", 
+    "password": "1234",
+    "email": "ed2@gmail.com"
+}
+
+### 
+GET http://localhost:3000/users
+
+###
+PATCH http://localhost:3000/users/b106eaa6-7d66-49ab-bfb3-44a76a2117d9
+Content-Type: application/json
+
+{
+    "username": "edson1"
+}

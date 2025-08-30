@@ -1,0 +1,25 @@
+### PEGAR UMA LISTA DE TODAS AS SALAS
+GET http://localhost:3000/cinema-hall
+
+### CRIA UMA SALA NOVA AO BANCO 
+POST http://localhost:3000/cinema-hall
+Content-Type: application/json
+
+{
+    "room_number": 1,
+    "seat_capacity": 30,
+    "hall_type": "3D"
+}
+
+### ATUALIZA UMA SALA COM ID
+PATCH  http://localhost:3000/cinema-hall/
+Content-Type: application/json
+
+{
+    "room_number": 1,
+    "seat_capacity": 30,
+    "hall_type": "3D"
+}
+
+### APAGA UMA SALA USANDO O ID
+DELETE http://localhost:3000/cinema-hall/227d99e1-b9aa-4bf7-acf2-6279d8356e01

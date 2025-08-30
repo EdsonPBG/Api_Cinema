@@ -1,0 +1,14 @@
+GET http://localhost:3000/session
+
+###
+POST http://localhost:3000/reservations
+Content-Type: application/json
+
+{
+    "user_id": "b106eaa6-7d66-49ab-bfb3-44a76a2117d9",
+    "session_id": "8cc2c423-0eea-47ac-aad5-65c05396b0a9",
+    "seat_ids": ["320b3713-40a4-4f39-b8a3-3a500367f2cf"],
+    "total_price": 23.00,
+    "status": "Pendente"
+}
+
